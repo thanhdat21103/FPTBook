@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ASM.Models;
 
 namespace ASM.Areas.Identity.Data;
 
@@ -20,6 +21,12 @@ public class ASMDBContext : IdentityDbContext<ManageUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<ASM.Models.Book>? Book { get; set; }
+
+    public DbSet<ASM.Models.Cart>? Cart { get; set; }
+
+    public DbSet<ASM.Models.Category>? Category { get; set; }
 }
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ManageUser>
 {
