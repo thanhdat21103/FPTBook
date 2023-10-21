@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\fptbook\\FPTBook\\ASM\\ASM\\ASM.csproj": {}
+    "D:\\Tai Lieu\\STUDY\\APNET\\FPTBook\\ASM\\ASM\\ASM.csproj": {}
   },
   "projects": {
-    "D:\\fptbook\\FPTBook\\ASM\\ASM\\ASM.csproj": {
+    "D:\\Tai Lieu\\STUDY\\APNET\\FPTBook\\ASM\\ASM\\ASM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\fptbook\\FPTBook\\ASM\\ASM\\ASM.csproj",
+        "projectUniqueName": "D:\\Tai Lieu\\STUDY\\APNET\\FPTBook\\ASM\\ASM\\ASM.csproj",
         "projectName": "ASM",
-        "projectPath": "D:\\fptbook\\FPTBook\\ASM\\ASM\\ASM.csproj",
-        "packagesPath": "C:\\Users\\vutha\\.nuget\\packages\\",
-        "outputPath": "D:\\fptbook\\FPTBook\\ASM\\ASM\\obj\\",
+        "projectPath": "D:\\Tai Lieu\\STUDY\\APNET\\FPTBook\\ASM\\ASM\\ASM.csproj",
+        "packagesPath": "C:\\Users\\hongha\\.nuget\\packages\\",
+        "outputPath": "D:\\Tai Lieu\\STUDY\\APNET\\FPTBook\\ASM\\ASM\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vutha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hongha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
