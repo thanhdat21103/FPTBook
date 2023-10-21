@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ASM.Areas.Identity.Data;
 
@@ -18,5 +19,14 @@ public class ASMDBContext : IdentityDbContext<ManageUser>
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+    }
+}
+public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ManageUser>
+{
+    public void Configure(EntityTypeBuilder<ManageUser> builder)
+    {
+        builder.Property(x => x.FirstName).HasMaxLength(100);
+        builder.Property(x => x.LastName).HasMaxLength(100);
+        builder.Property(x => x.Address).HasMaxLength(255);
     }
 }
