@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ASM.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASM.Areas.Identity.Data;
 
-public class ASMDBContext : IdentityDbContext<IdentityUser>
+public class ASMDBContext : IdentityDbContext<ManageUser>
 {
     public ASMDBContext(DbContextOptions<ASMDBContext> options)
         : base(options)

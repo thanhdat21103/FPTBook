@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("ASMDBContextCo
 builder.Services.AddDbContext<ASMDBContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ManageUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ASMDBContext>();
 
 // Add services to the container.
