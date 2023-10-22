@@ -22,11 +22,11 @@ public class ASMDBContext : IdentityDbContext<ManageUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<ASM.Models.Book> Books { get; set; }
+    public DbSet<ASM.Models.Book>? Books { get; set; }
 
-    public DbSet<ASM.Models.Cart> Carts { get; set; }
+    public DbSet<ASM.Models.Cart>? Carts { get; set; }
 
-    public DbSet<ASM.Models.Category> Categorys { get; set; }
+    public DbSet<ASM.Models.Category>? Categorys { get; set; }
 }
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ManageUser>
 {
