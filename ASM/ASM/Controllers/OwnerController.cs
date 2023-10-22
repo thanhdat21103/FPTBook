@@ -26,14 +26,14 @@ namespace ASM.Controllers
         {
             return View();
         }
-       /* private List<History> getAllHistory()
-        {
-            return _db.Histories.ToList();
-        }
-        public QueueCheckOut getQueue(int id)
-        {
-            return _db.QueueCheckOuts.Find(id);
-        }*/
+        //private List<History> getAllHistory()
+        //{
+        //    return _db.Histories.ToList();
+        //}
+        //public QueueCheckOut getQueue(int id)
+        //{
+        //    return _db.QueueCheckOuts.Find(id);
+        //}
         public List<Book> getAllBook()
         {
             return _db.Books.ToList();
