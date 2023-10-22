@@ -821,3 +821,4 @@ E:\study\webc\FPTBook\ASM\ASM\obj\Debug\net6.0\ASM.pdb
 E:\study\webc\FPTBook\ASM\ASM\obj\Debug\net6.0\ASM.genruntimeconfig.cache
 E:\study\webc\FPTBook\ASM\ASM\obj\Debug\net6.0\ref\ASM.dll
 E:\study\webc\FPTBook\ASM\ASM\obj\Debug\net6.0\scopedcss\Views\Shared\_Layoutmanage.cshtml.rz.scp.css
+D:\Tai Lieu\STUDY\APNET\FPTBook\ASM\ASM\obj\Debug\net6.0\scopedcss\Views\Shared\_Layoutmanage.cshtml.rz.scp.css
