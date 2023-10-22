@@ -33,25 +33,25 @@ namespace ASM.Controllers
         }
         public IActionResult Details(int id)
         {
-            var book = _db.Book.Find(id);
+            var book = _db.Books.Find(id);
             return View(book);
         }
         //hamphu
         public List<Book> getAllBook()
         {
-            return _db.Book.ToList();
+            return _db.Books.ToList();
         }
         private List<Category> getAllCategory()
         {
-            return _db.Category.ToList();
+            return _db.Categorys.ToList();
         }
         private Book getDetailBook(int id)
         {
-            return _db.Book.Find(id);
+            return _db.Books.Find(id);
         }
         private Cart getCart(int id)
         {
-            return _db.Cart.Find(id);
+            return _db.Carts.Find(id);
         }
         //
 
