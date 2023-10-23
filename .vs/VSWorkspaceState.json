@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ASM"
+    "\\ASM",
+    "\\ASM\\ASM",
+    "\\ASM\\ASM\\bin",
+    "\\ASM\\ASM\\Controllers"
   ],
-  "SelectedNode": "\\ASM\\ASM.sln",
   "PreviewInSolutionExplorer": false
 }
