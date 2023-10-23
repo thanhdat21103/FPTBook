@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "ListBook";
+    Layout = "~/Views/Shared/_Layoutmanage.cshtml";
+}
+
+<div class="content-wrapper" style="margin-top:50px;">
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">TOYS MANAGEMENT</h3>
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <div class="input-group-append">
+                                        <form asp-action="addCate" method="post" asp-controller="Owner">
+                                            <input type="text" name="name" id="name" class="form-control">
+                                            <button type="submit" class="btn btn-default">Add</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: fit-content;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cate in ViewBag.category)
+                                    {
+                                        if (cate.IsConfirm == true)
+                                        {
+                                            <tr>
+                                                <td>@cate.CategoryId</td>
+                                                <td>@cate.Name</td>
+                                                <td>
+                                                    <a asp-controller="Owner" asp-action="DeleteCate" asp-route-id="@cate.CategoryId" class="btn btn-danger" onclick="return confirm('Are you sure to delete this toy ?')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Cate Request</h3>
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: fit-content;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cate in ViewBag.category)
+                                    {
+                                        if (cate.IsConfirm == false)
+                                        {
+                                            <tr>
+                                                <td>@cate.CategoryId</td>
+                                                <td>@cate.Name</td>
+                                                <td>Waiting Confirming</td>
+                                                <td>
+                                                    <a asp-controller="Owner" asp-action="DeleteCate" asp-route-id="@cate.CategoryId" class="btn btn-danger" onclick="return confirm('Are you sure to delete this toy ?')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
