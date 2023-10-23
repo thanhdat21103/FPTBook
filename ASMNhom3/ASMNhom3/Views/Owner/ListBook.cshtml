@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "ListBook";
+    Layout = "~/Views/Shared/_Layoutmanage.cshtml";
+}
+
+<div class="content-wrapper" style="margin-top:50px;">
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">TOYS MANAGEMENT</h3>
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><a href="/owner/create">Add</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: fit-content;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Product code</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var book in ViewBag.book)
+                                    {
+                                        <tr>
+                                            <td>@book.BookID</td>
+                                            <td><img src="@book.Image" alt="" width="100px"></td>
+                                            <td>@book.Title</td>
+                                            @foreach (var cate in ViewBag.category)
+                                            {
+                                                if (book.CategoryID == cate.CategoryId)
+                                                {
+                                                    <td>@cate.Name</td>
+                                                }
+                                            }
+                                            <td>@book.Price</td>
+                                            <td>@book.Quantity</td>
+                                            <td>
+                                                <a asp-controller="Owner" asp-action="EditBook" asp-route-id="@book.BookID" class="btn btn-primary">Edit</a>
+                                                <a asp-controller="Owner" asp-action="Delete" asp-route-id="@book.BookID" class="btn btn-danger" onclick="return confirm('Are you sure to delete this toy ?')">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
