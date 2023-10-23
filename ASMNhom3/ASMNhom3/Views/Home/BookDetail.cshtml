@@ -1,0 +1,60 @@
+﻿@model ASMNhom3.Models.Book;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <div class="product-details">
+                    <!--product-details-->
+                    <div class="col-sm-5">
+                        <div class="view-product">
+                            <img src="@Model.Image" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information">
+                            <!--/product-information-->
+                            <h2>@Model.Title</h2>
+                            <p>So luong trong kho: @Model.Quantity</p>
+                            <span>
+                                <span>US $@Model.Price</span>
+                                <label>Quantity:</label>
+                                <input id="quantityInput" type="number" value="1" min="1" max="@Model.Quantity" />
+                                <form method="post" asp-controller="Home" asp-action="addCart">
+                                    <input type="hidden" name="id" value="@Model.BookID" />
+                                    <input type="hidden" name="quanlity" id="quanlity" value="1" /> <!-- Đặt giá trị mặc định là 1 -->
+                                    <button type="submit" class="btn btn-fefault cart">Add to cart</button>
+                                </form>
+                            </span>
+                            <p><b>Availability:</b> In Stock</p>
+                            <p><b>Condition:</b> New</p>
+                            <a href="">
+                                <img src="images/product-details/share.png" class="share img-responsive"
+                                     alt="" />
+                            </a>
+                        </div><!--/product-information-->
+                    </div>
+                </div><!--/product-details-->
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#quantityInput").on("input", function () {
+            var selectedQuantity = $(this).val();
+            $("#quanlity").val(selectedQuantity);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
