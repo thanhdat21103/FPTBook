@@ -8,6 +8,7 @@ builder.Services.AddDbContext<ASMDBContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<ManageUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ASMDBContext>();
 
 // Add services to the container.

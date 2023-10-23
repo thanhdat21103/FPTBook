@@ -1,5 +1,6 @@
 ﻿using ASM.Areas.Identity.Data;
 using ASM.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ namespace ASM.Controllers
             _db = context;
             _userManager = userManager;
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult ListBook()
         {
             ViewBag.book = getAllBook();
