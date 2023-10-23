@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "ChecKOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ASMNhom3.Models.QueueCheckOut;
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Check out</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+        <div class="step-one">
+            <h2 class="heading">PAYMENT PROCESS</h2>
+        </div>
+
+        <div class="shopper-informations" style="text-align: center;">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div style="text-align: center;">
+                        <div class="shopper-info">
+                            <p>Shopper Information</p>
+                            <form method="POST" asp-action="ConfirmCheckOut" asp-controller="Home">
+                                <input style="width: 500px" type="text" placeholder="FirstName"
+                                       value="@ViewBag.user.FistName" asp-for="FirstName">
+                                <input style="width: 500px" type="text" placeholder="LastName"
+                                       value="@ViewBag.user.LastName" asp-for="LastName">
+                                <input style="width: 500px" type="email" placeholder="Email"
+                                       value="@ViewBag.user.Email" asp-for="Email">
+                                <input style="width: 500px" type="text" placeholder="PhoneNumber"
+                                       value="@ViewBag.user.PhoneNum" asp-for="PhoneNum">
+                                <input style="width: 500px" type="text" placeholder="Address"
+                                       value="@ViewBag.user.Address" asp-for="Address">
+                                <input style="width: 500px" type="text" placeholder="Note" name="note" asp-for="Note"><br>
+                                <input type="hidden" value="@ViewBag.TotalPrice" asp-for="TotalPrice" />
+                                <input type="hidden" value="@ViewBag.TotalQuanlity" asp-for="TotalQuantity" />
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Comfirm all the product and information? ')">Continue</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        <div class="review-payment">
+            <h2>Review & Payment</h2>
+        </div>
+
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description">Name</td>
+                        <td class="description">Description</td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.product)
+                    {
+                        @foreach (var book in ViewBag.book)
+                        {
+                            @if (item.BookID == book.BookID)
+                            {
+                                <tr>
+                                    <td class="cart_product">
+                                        <a href="#"><img src="@book.Image" alt="" width="150px"></a>
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4>@book.Title</h4>
+                                        <input type="hidden" name="ten" value="@item.Book.Title">
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4>@book.Description</h4>
+                                        <input type="hidden" name="ten" value="@item.Book.Title">
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>$@book.Price</p>
+                                        <input type="hidden" name="gia" value="@item.Book.Price">
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <p>@item.Quanlity</p>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                    <tr>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="2">
+                            <table class="table table-condensed total-result">
+                                <tr>
+                                    <td>Cart Sub Total</td>
+                                    <td>$@ViewBag.TotalPrice</td>
+                                </tr>
+                                <tr>
+                                    <td>Product Total</td>
+                                    <td>@ViewBag.TotalQuanlity</td>
+                                </tr>
+                                <tr class="shipping-cost">
+                                    <td>Shipping Cost</td>
+                                    <td>Free</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td><span>$@ViewBag.TotalPrice</span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

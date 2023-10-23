@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "ShippingCheckOut";
+    Layout = "~/Views/Shared/_Layoutmanage.cshtml";
+}
+<div class="content-wrapper" style="margin-top:50px;">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">CHECKOUT MANAGEMENT</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>FirstName</th>
+                                        <th>LastName</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Note</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var queue in ViewBag.queue)
+                                    {
+                                        <tr>
+                                            <td>@queue.FirstName</td>
+                                            <td>@queue.LastName</td>
+                                            <td>@queue.Email</td>
+                                            <td>@queue.PhoneNum</td>
+                                            <td>@queue.Address</td>
+                                            <td>@queue.TotalQuantity</td>
+                                            <td>@queue.TotalPrice</td>
+                                            <td>@queue.Note</td>
+                                            @if (queue.IsConfirm == true)
+                                            {
+                                                <td>
+                                                    Shipping
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+                                            @if (queue.IsConfirm == true)
+                                            {
+                                                <td>
+                                                    <a asp-controller="Owner" asp-action="ConfirmShip" asp-route-id="@queue.QueueCheckOutID" class="btn btn-danger">Done</a>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+</div>
+

@@ -1,0 +1,15 @@
+﻿
+@if(ViewBag.UserEmail == null)
+{
+    <li>
+        <a asp-controller="Login" asp-action="Login">Login</a>
+    </li>
+} else {
+    <li>
+       <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @ViewBag.UserEmail</a>
+        <a href="/cartlist"><i class="fa fa-shopping-cart"></i> Cart</a>
+    </li>
+    <li>
+        <a asp-controller="Login" asp-action="Logout">Logout</a>
+    </li>
+}

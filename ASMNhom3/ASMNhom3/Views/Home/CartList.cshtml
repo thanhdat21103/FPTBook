@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "CartList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description">Name</td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.userCarts)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href="#"><img src="@item.Book.Image" alt="" width="100"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4>@item.Book.Title</h4>
+                            </td>
+                            <td class="cart_price">
+                                <p>$@item.Book.Price</p>
+                            </td>
+                            <td class="cart_quantity">
+                                @*<div class="cart_quantity_button">
+                            <input class="cart_quantity_input" type="text" value="@item.Quanlity" autocomplete="off" size="2">
+                            </div>*@
+                                <p>$@item.Quanlity</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" asp-controller="Home" asp-action="deleteCart" asp-route-id="@item.CartID"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="cart_description" colspan="3">
+                            <h4>Tổng tiền</h4>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">$@ViewBag.TotalPrice</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="do_action">
+    <div class="container">
+        <a class="btn btn-default check_out" href="/checkout">Check Out</a>
+    </div>
+</section>
+

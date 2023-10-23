@@ -1,0 +1,62 @@
+﻿@model ASMNhom3.Models.Book
+
+@{
+    ViewData["Title"] = "EditBook";
+    Layout = "~/Views/Shared/_Layoutmanage.cshtml";
+}
+
+<h1>EditBook</h1>
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <form asp-action="EditBook" method="post">
+                <input type="hidden" asp-for="BookID" value="@ViewBag.book.BookID">
+                <div class="form-group">
+                    <label asp-for="Image">Image</label>
+                    <input asp-for="Image" class="form-control" value="@ViewBag.book.Image">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input asp-for="Title" class="form-control" value="@ViewBag.book.Title">
+                </div>
+                <div class="form-group">
+                    <label>Type</label><br />
+                    @foreach (var category in ViewBag.category)
+                    {
+                        if (category.CategoryId == ViewBag.book.CategoryID)
+                        {
+                            <label>
+                                <input type="radio" asp-for="CategoryID" value="@category.CategoryId" checked />
+                                @category.Name
+                            </label>
+                            <br>
+                        }
+                        else
+                        {
+                            <label>
+                                <input type="radio" asp-for="CategoryID" value="@category.CategoryId" />
+                                @category.Name
+                            </label>
+                            <br>
+                        }
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" class="form-control" value="@ViewBag.book.Description">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" class="form-control" value="@ViewBag.book.Price">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity">Quantity</label>
+                    <input asp-for="Quantity" class="form-control" value="@ViewBag.book.Quantity">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </section>
+</div>

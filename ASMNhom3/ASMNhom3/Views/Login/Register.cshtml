@@ -1,0 +1,73 @@
+﻿@model ASMNhom3.Models.Account
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layoutlogin.cshtml";
+}
+<h1>@ViewBag.error</h1>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="post" asp-controller="Login" asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <span class="login100-form-title p-b-26">
+                    Sign Up
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter fullname">
+                    <input asp-for="FirstName" class="input100" type="text" name="FirstName" aria-required="true">
+                    <span class="focus-input100" data-placeholder="FirstName" asp-for="FirstName"></span>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter LastName">
+                    <input asp-for="LastName" class="input100" type="text" name="LastName" aria-required="true">
+                    <span class="focus-input100" data-placeholder="LastName" asp-for="LastName"></span>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter Address">
+                    <input asp-for="Address" class="input100" type="text" name="Address" aria-required="true">
+                    <span class="focus-input100" data-placeholder="Address" asp-for="Address"></span>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter PhoneNumber">
+                    <input asp-for="PhoneNum" class="input100" type="text" name="PhoneNum" aria-required="true">
+                    <span class="focus-input100" data-placeholder="PhoneNumber" asp-for="PhoneNum"></span>
+                    <span asp-validation-for="PhoneNum" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter Email">
+                    <input asp-for="Email" class="input100" type="Email" name="Email" aria-required="true">
+                    <span class="focus-input100" data-placeholder="Email" asp-for="Email"></span>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter fullname">
+                    <input asp-for="Password" class="input100" type="password" name="Password" aria-required="true">
+                    <span class="focus-input100" data-placeholder="Password" asp-for="Password"></span>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter ConfirmPassword">
+                    <input asp-for="ConfirmPassword" class="input100" type="password" name="ConfirmPassword" aria-required="true">
+                    <span class="focus-input100" data-placeholder="ConfirmPassword" asp-for="ConfirmPassword"></span>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <input asp-for="Roles" type="hidden" name="Roles" value="User" />
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type="submit">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center p-t-115">
+                    <span class="txt1">
+                        You have an account
+                    </span>
+
+                    <a class="txt2" href="/login/login">
+                        Login
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
