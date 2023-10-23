@@ -13,12 +13,26 @@ namespace ASMNhom3.Controllers
             _logger = logger;
             _db = context;
         }
+        //ko can dang nhap, hien thi book
         public IActionResult Index()
         {
             ViewBag.UserEmail = HttpContext.Session.GetString("Email");
             var category = getAllCategory();
             ViewBag.category = category;
             return View();
+        }
+        public IActionResult BookList()
+        {
+            ViewBag.UserEmail = HttpContext.Session.GetString("Email");
+            var _product = getAllBook();
+            ViewBag.book = _product;
+            return View();
+        }
+        public IActionResult BookDetail(int id)
+        {
+            ViewBag.UserEmail = HttpContext.Session.GetString("Email");
+            var book = _db.Books.Find(id);
+            return View(book);
         }
         //hamphu
         public List<Book> getAllBook()
