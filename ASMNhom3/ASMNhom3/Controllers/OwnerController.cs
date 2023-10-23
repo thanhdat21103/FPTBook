@@ -24,7 +24,7 @@ namespace ASMNhom3.Controllers
         }
         public IActionResult CreateBook()
         {
-            ViewBag.category = getAllCategory();
+            ViewBag.category = getAllCategory().Where(c => c.IsConfirm == true).ToList();
             return View();
         }
         [HttpPost]

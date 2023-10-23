@@ -45,7 +45,24 @@ namespace ASMNhom3.Controllers
             _db.SaveChanges();
             return RedirectToAction("ListCate");
         }
-        public IActionResult Hisory()
+        public IActionResult ResetPassUser(int id)
+        {
+            ViewBag.user = getDetailUser(id);
+            return View();
+        }
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult ResetPassUser(Account model)
+		{
+			if (ModelState.IsValid)
+			{
+				_db.Accounts.Update(model);
+				_db.SaveChanges();
+				return RedirectToAction("ListUser");
+			}
+			return View(model);
+		}
+		public IActionResult Hisory()
         {
             ViewBag.Null = "hong co null";
             ViewBag.history = getAllHistory();
@@ -83,6 +100,10 @@ namespace ASMNhom3.Controllers
         private List<History> getAllHistory()
         {
             return _db.Histories.ToList();
+        }
+        private Account getDetailUser(int id)
+        {
+            return _db.Accounts.Find(id);
         }
     }
 }
