@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ASMNhom3.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ASMNhom3.Controllers
 {
@@ -14,6 +16,16 @@ namespace ASMNhom3.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult ListUser()
+        {
+            ViewBag.user = getAllUser();
+            return View();
+        }
+        //hamphu
+        public List<Account> getAllUser()
+        {
+            return _db.Accounts.ToList();
         }
     }
 }
