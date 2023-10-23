@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Tai Lieu\STUDY\APNET\FPTBook\ASMNhom3\ASMNhom3
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Tai Lieu/STUDY/APNET/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/Hisory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSGlzb3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Tai Lieu/STUDY/APNET/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

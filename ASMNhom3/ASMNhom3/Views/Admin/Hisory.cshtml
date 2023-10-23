@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Hisory";
+    Layout = "~/Views/Shared/_Layoutadmin.cshtml";
+}
+<div class="content-wrapper" style="margin-top:50px;">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">CHECKOUT MANAGEMENT</h3>
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    @using (Html.BeginForm("Hisory", "Owner", FormMethod.Post))
+                                    {
+                                        <div class="input-group">
+                                            <input type="text" name="email" class="form-control" placeholder="Search">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>FirstName</th>
+                                        <th>LastName</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var queue in ViewBag.history)
+                                    {
+                                        <tr>
+                                            <td>@queue.FirstName</td>
+                                            <td>@queue.LastName</td>
+                                            <td>@queue.Email</td>
+                                            <td>@queue.PhoneNum</td>
+                                            <td>@queue.Address</td>
+                                            <td>@queue.TotalQuantity</td>
+                                            <td>@queue.TotalPrice</td>
+                                            <td>@queue.Note</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+</div>
+
+

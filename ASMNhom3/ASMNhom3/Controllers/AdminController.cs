@@ -45,6 +45,28 @@ namespace ASMNhom3.Controllers
             _db.SaveChanges();
             return RedirectToAction("ListCate");
         }
+        public IActionResult Hisory()
+        {
+            ViewBag.Null = "hong co null";
+            ViewBag.history = getAllHistory();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Hisory(string email)
+        {
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
+                ViewBag.history = history;
+            }
+            else
+            {
+                ViewBag.history = getAllHistory();
+            }
+
+            return View();
+        }
         //hamphu
         public List<Account> getAllUser()
         {
@@ -57,6 +79,10 @@ namespace ASMNhom3.Controllers
         private Category getDetailCate(int id)
         {
             return _db.Categorys.Find(id);
+        }
+        private List<History> getAllHistory()
+        {
+            return _db.Histories.ToList();
         }
     }
 }
