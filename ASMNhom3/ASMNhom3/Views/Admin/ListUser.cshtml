@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">TOYS MANAGEMENT</h3>
+                            <h3 class="card-title">USER MANAGEMENT</h3>
                             <div class="card-tools">
                             </div>
                         </div>
@@ -26,7 +26,6 @@
                                         <th>User ID</th>
                                         <th>FirstName</th>
                                         <th>LastName</th>
-                                        <th>Username</th>
                                         <th>Address</th>
                                         <th>PhoneNumer</th>
                                         <th>Email</th>
@@ -38,17 +37,16 @@
                                     @foreach (var user in ViewBag.user)
                                     {
                                         <tr>
-                                            <td>@user.Id</td>
+                                            <td>@user.AccountID</td>
                                             <td>@user.FirstName</td>
                                             <td>@user.LastName</td>
-                                            <td>@user.UserName</td>
                                             <td>@user.Address</td>
-                                            <td>@user.PhoneNumber</td>
+                                            <td>@user.PhoneNum</td>
                                             <td>@user.Email</td>
-                                            <td>@user.PasswordHash</td>
+                                            <td>@user.Password</td>
                                             <td>
-                                                <a asp-controller="Owner" asp-action="EditBook" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
-                                                <a asp-controller="Owner" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this toy ?')">Delete</a>
+                                                <a asp-controller="Admin" asp-action="ResetPassUser" asp-route-id="@user.AccountID" class="btn btn-primary">Reset Password</a>
+                                                <a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.AccountID" class="btn btn-danger" onclick="return confirm('Are you sure to delete this toy ?')">Delete</a>
                                             </td>
                                         </tr>
                                     }

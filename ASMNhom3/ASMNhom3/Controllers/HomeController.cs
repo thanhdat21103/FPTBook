@@ -110,6 +110,7 @@ namespace ASMNhom3.Controllers
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
+                ViewBag.UserEmail = HttpContext.Session.GetString("Email");
                 var userEmail = HttpContext.Session.GetString("Email");
                 List<Cart> carts = new List<Cart>();
                 ViewBag.TotalPrice = 0;

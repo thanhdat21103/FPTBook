@@ -22,10 +22,41 @@ namespace ASMNhom3.Controllers
             ViewBag.user = getAllUser();
             return View();
         }
+        public IActionResult ListCate()
+        {
+            ViewBag.category = _db.Categorys.ToList();
+            return View();
+        }
+        public IActionResult DeleteCate(int id)
+        {
+            _db.Categorys.Remove(getDetailCate(id));
+            _db.SaveChanges();
+            return RedirectToAction("ListCate");
+        }
+        public IActionResult ConfirmCate(int id)
+        {
+            foreach(var cate in _db.Categorys)
+            {
+                if(cate.CategoryId == id)
+                {
+                    cate.IsConfirm = true;
+                }
+            }
+            _db.SaveChanges();
+            return RedirectToAction("ListCate");
+        }
         //hamphu
         public List<Account> getAllUser()
         {
-            return _db.Accounts.ToList();
+            return _db.Accounts.Where(c => c.Roles == "User").ToList();
+        }
+        public List<Category> getAllCate()
+        {
+            return _db.Categorys.ToList();
+        }
+        private Category getDetailCate(int id)
+        {
+            return _db.Categorys.Find(id);
         }
     }
 }
