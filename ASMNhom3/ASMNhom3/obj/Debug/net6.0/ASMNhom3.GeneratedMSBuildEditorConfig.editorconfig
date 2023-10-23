@@ -5,81 +5,80 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ASMNhom3
 build_property.RootNamespace = ASMNhom3
-build_property.ProjectDir = D:\fptbook\FPTBook\ASMNhom3\ASMNhom3\
+build_property.ProjectDir = E:\study\webc\FPTBook\ASMNhom3\ASMNhom3\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\fptbook\FPTBook\ASMNhom3\ASMNhom3
+build_property.MSBuildProjectDirectory = E:\study\webc\FPTBook\ASMNhom3\ASMNhom3
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/BookDetail.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/BookDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29rRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/BookList.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/BookList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29rTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/CartList.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/CartList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJ0TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/ChecKOut.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/ChecKOut.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGVjS091dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/Index.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Home/Privacy.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Login/Login.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Login/Register.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Login/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/Error.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_LoginPartial.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/_ViewImports.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/_ViewStart.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layout.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-lmn7icz3g5
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutadmin.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutadmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRhZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-ttm81hs71s
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutlogin.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutlogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-ky4tplc3tt
 
-[D:/fptbook/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutmanage.cshtml]
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Shared/_Layoutmanage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRtYW5hZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-l1blwm09va
