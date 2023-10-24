@@ -62,7 +62,10 @@
 
 <section id="do_action">
     <div class="container">
-        <a class="btn btn-default check_out" href="/checkout">Check Out</a>
+        <form method="get" asp-action="CheckOut">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <button type="submit" class="btn btn-default check_out">Check Out</button>
+        </form>
     </div>
 </section>
 

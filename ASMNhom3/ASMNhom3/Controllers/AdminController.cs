@@ -15,81 +15,146 @@ namespace ASMNhom3.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
         }
         public IActionResult ListUser()
         {
-            ViewBag.user = getAllUser();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+
+                ViewBag.user = getAllUser();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
         }
         public IActionResult ListCate()
         {
-            ViewBag.category = _db.Categorys.ToList();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                ViewBag.category = _db.Categorys.ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult DeleteCate(int id)
         {
-            _db.Categorys.Remove(getDetailCate(id));
-            _db.SaveChanges();
-            return RedirectToAction("ListCate");
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                _db.Categorys.Remove(getDetailCate(id));
+                _db.SaveChanges();
+                return RedirectToAction("ListCate");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ConfirmCate(int id)
         {
-            foreach(var cate in _db.Categorys)
+            if (HttpContext.Session.GetString("Role") == "Admin")
             {
-                if(cate.CategoryId == id)
+                foreach (var cate in _db.Categorys)
                 {
-                    cate.IsConfirm = true;
+                    if (cate.CategoryId == id)
+                    {
+                        cate.IsConfirm = true;
+                    }
                 }
+                _db.SaveChanges();
+                return RedirectToAction("ListCate");
             }
-            _db.SaveChanges();
-            return RedirectToAction("ListCate");
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ResetPassUser(int id)
         {
-            ViewBag.user = getDetailUser(id);
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                ViewBag.user = getDetailUser(id);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult ResetPassUser(Account model)
-		{
-			if (ModelState.IsValid)
-			{
-				_db.Accounts.Update(model);
-				_db.SaveChanges();
-				return RedirectToAction("ListUser");
-			}
-			return View(model);
-		}
-		public IActionResult Hisory()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassUser(Account model)
         {
-            ViewBag.Null = "hong co null";
-            ViewBag.history = getAllHistory();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                if (ModelState.IsValid)
+                {
+                    _db.Accounts.Update(model);
+                    _db.SaveChanges();
+                    return RedirectToAction("ListUser");
+                }
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        public IActionResult Hisory()
+        {
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                ViewBag.Null = "hong co null";
+                ViewBag.history = getAllHistory();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpPost]
         public IActionResult Hisory(string email)
         {
-
-            if (!string.IsNullOrEmpty(email))
+            if (HttpContext.Session.GetString("Role") == "Admin")
             {
-                var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
-                ViewBag.history = history;
+                if (!string.IsNullOrEmpty(email))
+                {
+                    var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
+                    ViewBag.history = history;
+                }
+                else
+                {
+                    ViewBag.history = getAllHistory();
+                }
+
+                return View();
             }
             else
             {
-                ViewBag.history = getAllHistory();
+                return RedirectToAction("Login", "Login");
             }
-
-            return View();
         }
         //hamphu
-        public List<Account> getAllUser()
+        private List<Account> getAllUser()
         {
             return _db.Accounts.Where(c => c.Roles == "User").ToList();
         }
-        public List<Category> getAllCate()
+        private List<Category> getAllCate()
         {
             return _db.Categorys.ToList();
         }

@@ -1,0 +1,97 @@
+﻿@{
+	ViewData["Title"] = "Profile";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ASMNhom3.Models.Account;
+<section id="cart_items">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Check out</li>
+			</ol>
+		</div><!--/breadcrums-->
+
+		<div class="step-one">
+			<h2 class="heading">PAYMENT PROCESS</h2>
+		</div>
+
+		<div class="shopper-informations" style="text-align: center;">
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<div style="text-align: center;">
+						<div class="shopper-info">
+							<p>Shopper Information</p>
+							<form method="POST" asp-action="ConfirmCheckOut" asp-controller="Home">
+								<input style="width: 500px" type="text" placeholder="FirstName"
+									   value="@ViewBag.user.FirstName" asp-for="FirstName">
+								<input style="width: 500px" type="text" placeholder="LastName"
+									   value="@ViewBag.user.LastName" asp-for="LastName">
+								<input style="width: 500px" type="email" placeholder="Email"
+									   value="@ViewBag.user.Email" asp-for="Email">
+								<input style="width: 500px" type="text" placeholder="PhoneNumber"
+									   value="@ViewBag.user.PhoneNum" asp-for="PhoneNum">
+								<input style="width: 500px" type="text" placeholder="Address"
+									   value="@ViewBag.user.Address" asp-for="Address">
+								<button type="submit" class="btn btn-primary" onclick="return confirm('Comfirm all the product and information? ')">Continue</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+		</div>
+		<div class="review-payment">
+			<h2>HISTORY</h2>
+		</div>
+
+		<div class="table-responsive cart_info">
+			<table class="table table-condensed">
+				<thead>
+					<tr class="cart_menu">
+						<td class="image">FirstName</td>
+						<td class="description">LastName</td>
+						<td class="description">Address</td>
+						<td class="price">PhoneNumber</td>
+						<td class="quantity">Quantity</td>
+						<td class="quantity">Price</td>
+						<td class="quantity">Note</td>
+						<td class="quantity">Status</td>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var history in ViewBag.history)
+					{
+						<tr>
+							<td class="cart_description">
+								<h4>@history.FirstName</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.LastName</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.Address</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.PhoneNum</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.TotalQuantity</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.TotalPrice</h4>
+							</td>
+							<td class="cart_description">
+								<h4>@history.Note</h4>
+							</td>
+							<td class="cart_description">
+								<h4>Done</h4>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>

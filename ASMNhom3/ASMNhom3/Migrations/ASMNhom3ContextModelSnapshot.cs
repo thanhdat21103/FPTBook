@@ -125,6 +125,8 @@ namespace ASMNhom3.Migrations
 
                     b.HasKey("CartID");
 
+                    b.HasIndex("BookID");
+
                     b.ToTable("Carts");
                 });
 
@@ -233,6 +235,17 @@ namespace ASMNhom3.Migrations
                     b.HasKey("QueueCheckOutID");
 
                     b.ToTable("QueueCheckOuts");
+                });
+
+            modelBuilder.Entity("ASMNhom3.Models.Cart", b =>
+                {
+                    b.HasOne("ASMNhom3.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

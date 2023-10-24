@@ -39,14 +39,17 @@ namespace ASMNhom3.Controllers
                     if (user.Roles == "User")
                     {
                         HttpContext.Session.SetString("Email", account.Email);
+                        HttpContext.Session.SetString("UserID", account.AccountID.ToString());
                         return RedirectToAction("Index", "Home");
                     }
                     else if (user.Roles == "Owner")
                     {
+                        HttpContext.Session.SetString("Role", "Owner");
                         return RedirectToAction("Index", "Owner");
                     }
                     else if (user.Roles == "Admin")
                     {
+                        HttpContext.Session.SetString("Role", "Admin");
                         return RedirectToAction("Index", "Admin");
                     }
                     else

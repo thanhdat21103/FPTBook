@@ -14,157 +14,272 @@ namespace ASMNhom3.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ListBook()
         {
-            ViewBag.book = getAllBook();
-            ViewBag.category = getAllCategory();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                ViewBag.book = getAllBook();
+                ViewBag.category = getAllCategory();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult CreateBook()
         {
-            ViewBag.category = getAllCategory().Where(c => c.IsConfirm == true).ToList();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                ViewBag.category = getAllCategory().Where(c => c.IsConfirm == true).ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpPost]
         public IActionResult CreateBook(Book model)
         {
-            if (ModelState.IsValid)
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                _db.Books.Add(model);
-                _db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    _db.Books.Add(model);
+                    _db.SaveChanges();
 
-                return RedirectToAction("ListBook");
+                    return RedirectToAction("ListBook");
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult EditBook(int id)
         {
-            ViewBag.book = getDetailBook(id);
-            ViewBag.category = getAllCategory();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                ViewBag.book = getDetailBook(id);
+                ViewBag.category = getAllCategory();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditBook(Book model)
         {
-            if (ModelState.IsValid)
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                _db.Books.Update(model);
-                _db.SaveChanges();
-                return RedirectToAction("ListBook");
+                if (ModelState.IsValid)
+                {
+                    _db.Books.Update(model);
+                    _db.SaveChanges();
+                    return RedirectToAction("ListBook");
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult Delete(int id)
         {
-            _db.Books.Remove(getDetailBook(id));
-            _db.SaveChanges();
-            return RedirectToAction("ListBook");
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                _db.Books.Remove(getDetailBook(id));
+                _db.SaveChanges();
+                return RedirectToAction("ListBook");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult WaitingCheckOut()
         {
-            List<QueueCheckOut> queues = new List<QueueCheckOut>();
-            foreach (var queue in _db.QueueCheckOuts)
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                if (queue.IsConfirm == false)
+                List<QueueCheckOut> queues = new List<QueueCheckOut>();
+                foreach (var queue in _db.QueueCheckOuts)
                 {
-                    queues.Add(queue);
+                    if (queue.IsConfirm == false)
+                    {
+                        queues.Add(queue);
+                    }
                 }
+                ViewBag.queue = queues;
+                return View();
             }
-            ViewBag.queue = queues;
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ConfirmQueue(int id)
         {
-            foreach (var queue in _db.QueueCheckOuts)
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                if (id == queue.QueueCheckOutID)
+                foreach (var queue in _db.QueueCheckOuts)
                 {
-                    queue.IsConfirm = true;
+                    if (id == queue.QueueCheckOutID)
+                    {
+                        queue.IsConfirm = true;
+                    }
                 }
+                _db.SaveChanges();
+                return RedirectToAction("WaitingCheckOut");
             }
-            _db.SaveChanges();
-            return RedirectToAction("WaitingCheckOut");
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ShippingCheckOut()
         {
-            List<QueueCheckOut> queues = new List<QueueCheckOut>();
-            foreach (var queue in _db.QueueCheckOuts)
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                if (queue.IsConfirm == true)
+                List<QueueCheckOut> queues = new List<QueueCheckOut>();
+                foreach (var queue in _db.QueueCheckOuts)
                 {
-                    queues.Add(queue);
+                    if (queue.IsConfirm == true)
+                    {
+                        queues.Add(queue);
+                    }
                 }
+                ViewBag.queue = queues;
+                return View();
             }
-            ViewBag.queue = queues;
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ConfirmShip(int id)
         {
-            var shipping = getQueue(id);
-            var history = new History
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                FirstName = shipping.FirstName,
-                LastName = shipping.LastName,
-                PhoneNum = shipping.PhoneNum,
-                Address = shipping.Address,
-                Email = shipping.Email,
-                Note = shipping.Note,
-                TotalPrice = shipping.TotalPrice,
-                TotalQuantity = shipping.TotalQuantity
-            };
-            _db.Histories.Add(history);
-            _db.QueueCheckOuts.Remove(shipping);
-            _db.SaveChanges();
-            return RedirectToAction("ShippingCheckOut");
+                var shipping = getQueue(id);
+                var history = new History
+                {
+                    FirstName = shipping.FirstName,
+                    LastName = shipping.LastName,
+                    PhoneNum = shipping.PhoneNum,
+                    Address = shipping.Address,
+                    Email = shipping.Email,
+                    Note = shipping.Note,
+                    TotalPrice = shipping.TotalPrice,
+                    TotalQuantity = shipping.TotalQuantity
+                };
+                _db.Histories.Add(history);
+                _db.QueueCheckOuts.Remove(shipping);
+                _db.SaveChanges();
+                return RedirectToAction("ShippingCheckOut");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult Hisory()
         {
-            ViewBag.Null = "hong co null";
-            ViewBag.history = getAllHistory();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                ViewBag.Null = "hong co null";
+                ViewBag.history = getAllHistory();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         [HttpPost]
         public IActionResult Hisory(string email)
         {
-
-            if (!string.IsNullOrEmpty(email))
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
-                ViewBag.history = history;
+                if (!string.IsNullOrEmpty(email))
+                {
+                    var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
+                    ViewBag.history = history;
+                }
+                else
+                {
+                    ViewBag.history = getAllHistory();
+                }
+
+                return View();
             }
             else
             {
-                ViewBag.history = getAllHistory();
+                return RedirectToAction("Login", "Login");
             }
-
-            return View();
         }
         public IActionResult ListType()
         {
-            ViewBag.category = _db.Categorys.ToList();
-            return View();
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                ViewBag.category = _db.Categorys.ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult addCate(string name)
         {
-            var cate = new Category
+            if (HttpContext.Session.GetString("Role") == "Owner")
             {
-                Name = name,
-                IsConfirm = false
-            };
-            _db.Categorys.Add(cate);
-            _db.SaveChanges();
-            return RedirectToAction("ListType");
+                var cate = new Category
+                {
+                    Name = name,
+                    IsConfirm = false
+                };
+                _db.Categorys.Add(cate);
+                _db.SaveChanges();
+                return RedirectToAction("ListType");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult DeleteCate(int id)
         {
-            _db.Categorys.Remove(getDetailCate(id));
-            _db.SaveChanges();
-            return RedirectToAction("ListType");
+            if (HttpContext.Session.GetString("Role") == "Owner")
+            {
+                _db.Categorys.Remove(getDetailCate(id));
+                _db.SaveChanges();
+                return RedirectToAction("ListType");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         //hamphu
+        private QueueCheckOut getDetailCheckout(int id)
+        {
+            return _db.QueueCheckOuts.Find(id);
+        }
         private List<History> getAllHistory()
         {
             return _db.Histories.ToList();

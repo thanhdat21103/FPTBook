@@ -13,6 +13,20 @@ namespace ASMNhom3.Controllers
             _logger = logger;
             _db = context;
         }
+        //Profile
+        public IActionResult Profile()
+        {
+            if (HttpContext.Session.GetString("Email") != null)
+            {
+                ViewBag.user = _db.Accounts.FirstOrDefault(c => c.Email == HttpContext.Session.GetString("Email"));
+                ViewBag.history = _db.Histories.Where(c => c.Email == HttpContext.Session.GetString("Email"));
+                ViewBag.checkout = _db.QueueCheckOuts.Where(c => c.Email == HttpContext.Session.GetString("Email"));
+                return View();
+            } else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
         //cart
         public IActionResult addCart(int id, int quanlity)
         {
@@ -72,8 +86,12 @@ namespace ASMNhom3.Controllers
                         _db.SaveChanges();
                     }
                 }
+                return RedirectToAction("CartList", "Home");
             }
-            return RedirectToAction("CartList", "Home");
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         public IActionResult CartList()
@@ -100,81 +118,102 @@ namespace ASMNhom3.Controllers
                 }
                 ViewBag.userCarts = userCarts;
                 ViewBag.TotalPrice = total;
-
                 return View();
             }
-
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ChecKOut()
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
-                ViewBag.UserEmail = HttpContext.Session.GetString("Email");
-                var userEmail = HttpContext.Session.GetString("Email");
-                List<Cart> carts = new List<Cart>();
-                ViewBag.TotalPrice = 0;
-                ViewBag.TotalQuanlity = 0;
-                foreach (var cart in _db.Carts)
+                if (ViewBag.TotalPrice != 0)
                 {
-                    if (userEmail == cart.EmailUser)
+                    ViewBag.UserEmail = HttpContext.Session.GetString("Email");
+                    var userEmail = HttpContext.Session.GetString("Email");
+                    List<Cart> carts = new List<Cart>();
+                    ViewBag.TotalPrice = 0;
+                    ViewBag.TotalQuanlity = 0;
+                    foreach (var cart in _db.Carts)
                     {
-                        carts.Add(cart);
-                    }
-                }
-                foreach (var cart in _db.Carts)
-                {
-                    foreach (var book in _db.Books)
-                    {
-                        if (userEmail == cart.EmailUser && cart.BookID == book.BookID)
+                        if (userEmail == cart.EmailUser)
                         {
-                            ViewBag.TotalPrice += cart.Total;
-                            ViewBag.TotalQuanlity += cart.Quanlity;
+                            carts.Add(cart);
                         }
                     }
+                    foreach (var cart in _db.Carts)
+                    {
+                        foreach (var book in _db.Books)
+                        {
+                            if (userEmail == cart.EmailUser && cart.BookID == book.BookID)
+                            {
+                                ViewBag.TotalPrice += cart.Total;
+                                ViewBag.TotalQuanlity += cart.Quanlity;
+                            }
+                        }
+                    }
+                    ViewBag.book = getAllBook();
+                    ViewBag.product = carts;
+                    ViewBag.user = _db.Accounts.FirstOrDefault(c => c.Email == userEmail);
+                    return View();
+                } else
+                {
+                    ModelState.AddModelError("", "Gio hang trong");
+                    return RedirectToAction("CartList");
                 }
-                ViewBag.book = getAllBook();
-                ViewBag.product = carts;
-                ViewBag.user = _db.Accounts.FirstOrDefault(c => c.Email == userEmail);
-                return View();
             }
-
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         public IActionResult ConfirmCheckOut(QueueCheckOut model)
         {
-            var userEmail = HttpContext.Session.GetString("Email");
-            if (ModelState.IsValid)
+            if (HttpContext.Session.GetString("Email") != null)
             {
-                var newQueue = new QueueCheckOut
+                var userEmail = HttpContext.Session.GetString("Email");
+                if (ModelState.IsValid && model.TotalPrice != 0 && model.TotalQuantity != 0)
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    PhoneNum = model.PhoneNum,
-                    Address = model.Address,
-                    Email = model.Email,
-                    Note = model.Note,
-                    TotalPrice = model.TotalPrice,
-                    TotalQuantity = model.TotalQuantity,
-                    IsConfirm = false
-                };
-                _db.QueueCheckOuts.Add(newQueue);
-                List<Cart> oldcart = new List<Cart>();
-                foreach (var cart in _db.Carts)
-                {
-                    if (cart.EmailUser == userEmail)
+                    var newQueue = new QueueCheckOut
                     {
-                        oldcart.Add(cart);
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        PhoneNum = model.PhoneNum,
+                        Address = model.Address,
+                        Email = model.Email,
+                        Note = model.Note,
+                        TotalPrice = model.TotalPrice,
+                        TotalQuantity = model.TotalQuantity,
+                        IsConfirm = false
+                    };
+                    _db.QueueCheckOuts.Add(newQueue);
+                    List<Cart> oldcart = new List<Cart>();
+                    foreach (var cart in _db.Carts)
+                    {
+                        if (cart.EmailUser == userEmail)
+                        {
+                            oldcart.Add(cart);
+                        }
                     }
+                    for (int i = 0; i < oldcart.Count(); i++)
+                    {
+                        _db.Carts.Remove(oldcart[i]);
+                    }
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                for (int i = 0; i < oldcart.Count(); i++)
+                else
                 {
-                    _db.Carts.Remove(oldcart[i]);
+                    ModelState.AddModelError("", "Gio hang trong");
+                    return RedirectToAction("ChecKOut");
                 }
-                _db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return RedirectToAction("ChecKOut");
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
         //ko can dang nhap, hien thi book
         public IActionResult Index()
