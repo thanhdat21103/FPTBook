@@ -87,7 +87,13 @@ namespace ASMNhom3.Controllers
                         ModelState.AddModelError("", "SDT va email nay da duoc su dung");
                         return View();
                     }
-                }
+					else if (model.Password !=  model.ConfirmPassword )
+					{
+						ModelState.AddModelError("", "Mat khau khong trung khop");
+						return View();
+					}
+                        
+				}
                 _db.Accounts.Add(model);
                 _db.SaveChanges();
                 return RedirectToAction("Login", "Login");
