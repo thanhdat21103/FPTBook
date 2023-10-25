@@ -83,12 +83,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="/" class="active">Home</a></li>
 								<li class="dropdown">
-									<a href="/booklist">Shop<i class="fa fa-angle-down"></i></a>
-								@*<ul role="menu" class="sub-menu">
-										@foreach (var item in ViewBag.category){
-											<li><a href="">@item.Name</a></li>
-										}
-									</ul>*@
+									<a href="/booklist"></a>
 								</li>
 								<li class="dropdown">
 									<a href="#">Blog</a>
@@ -99,8 +94,8 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<form action="/search" method="post">
-								<input type="search" placeholder="Search" name="name" required />
+							<form asp-action="SearchByName" method="post" asp-controller="Home">
+								<input type="search" placeholder="Search By Name" name="name" required />
 							</form>
 						</div>
 					</div>

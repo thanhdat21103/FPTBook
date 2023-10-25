@@ -39,6 +39,20 @@ namespace ASMNhom3.Controllers
             }
 
         }
+        public IActionResult ListOwner()
+        {
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+
+                ViewBag.user = getAllOwner();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+        }
         public IActionResult ListCate()
         {
             if (HttpContext.Session.GetString("Role") == "Admin")
@@ -95,6 +109,18 @@ namespace ASMNhom3.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
+        public IActionResult ResetPassOwner(int id)
+        {
+            if (HttpContext.Session.GetString("Role") == "Admin")
+            {
+                ViewBag.user = getDetailUser(id);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassUser(Account model)
@@ -114,35 +140,19 @@ namespace ASMNhom3.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
-        public IActionResult Hisory()
-        {
-            if (HttpContext.Session.GetString("Role") == "Admin")
-            {
-                ViewBag.Null = "hong co null";
-                ViewBag.history = getAllHistory();
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
-        }
         [HttpPost]
-        public IActionResult Hisory(string email)
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassOwner(Account model)
         {
             if (HttpContext.Session.GetString("Role") == "Admin")
             {
-                if (!string.IsNullOrEmpty(email))
+                if (ModelState.IsValid)
                 {
-                    var history = _db.Histories.Where(u => u.Email.Contains(email)).ToList();
-                    ViewBag.history = history;
+                    _db.Accounts.Update(model);
+                    _db.SaveChanges();
+                    return RedirectToAction("ListOwner");
                 }
-                else
-                {
-                    ViewBag.history = getAllHistory();
-                }
-
-                return View();
+                return View(model);
             }
             else
             {
@@ -153,6 +163,10 @@ namespace ASMNhom3.Controllers
         private List<Account> getAllUser()
         {
             return _db.Accounts.Where(c => c.Roles == "User").ToList();
+        }
+        private List<Account> getAllOwner()
+        {
+            return _db.Accounts.Where(c => c.Roles == "Owner").ToList();
         }
         private List<Category> getAllCate()
         {

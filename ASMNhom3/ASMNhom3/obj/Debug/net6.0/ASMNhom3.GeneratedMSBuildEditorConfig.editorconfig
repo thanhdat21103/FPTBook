@@ -15,10 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\study\webc\FPTBook\ASMNhom3\ASMNhom3
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/Hisory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSGlzb3J5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -27,8 +23,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdENhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ListOwner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdE93bmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ListUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ResetPassOwner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVzZXRQYXNzT3duZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ResetPassUser.cshtml]
@@ -61,6 +65,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/SearchByCate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2hCeUNhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Home/SearchByName.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2hCeU5hbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Login/Login.cshtml]

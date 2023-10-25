@@ -22,7 +22,8 @@ namespace ASMNhom3.Controllers
                 ViewBag.history = _db.Histories.Where(c => c.Email == HttpContext.Session.GetString("Email"));
                 ViewBag.checkout = _db.QueueCheckOuts.Where(c => c.Email == HttpContext.Session.GetString("Email"));
                 return View();
-            } else
+            }
+            else
             {
                 return RedirectToAction("Login", "Login");
             }
@@ -117,7 +118,7 @@ namespace ASMNhom3.Controllers
 
                 }
                 ViewBag.userCarts = userCarts;
-                ViewBag.TotalPrice = total;
+                ViewBag.TotalPrice = total.ToString();
                 return View();
             }
             else
@@ -129,7 +130,7 @@ namespace ASMNhom3.Controllers
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
-                if (ViewBag.TotalPrice != 0)
+                if (ViewBag.TotalPrice != "0")
                 {
                     ViewBag.UserEmail = HttpContext.Session.GetString("Email");
                     var userEmail = HttpContext.Session.GetString("Email");
@@ -158,7 +159,8 @@ namespace ASMNhom3.Controllers
                     ViewBag.product = carts;
                     ViewBag.user = _db.Accounts.FirstOrDefault(c => c.Email == userEmail);
                     return View();
-                } else
+                }
+                else
                 {
                     ModelState.AddModelError("", "Gio hang trong");
                     return RedirectToAction("CartList");
@@ -226,8 +228,57 @@ namespace ASMNhom3.Controllers
         public IActionResult BookList()
         {
             ViewBag.UserEmail = HttpContext.Session.GetString("Email");
+            ViewBag.category = getAllCategory();
             var _product = getAllBook();
             ViewBag.book = _product;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SearchByCate(int id)
+        {          
+            List<Book> books = new List<Book>();
+            foreach (var book in _db.Books)
+            {
+                if (book.CategoryID == id)
+                {
+                    books.Add(book);
+                }
+            }
+            if (books.Count != 0)
+            {
+                ViewBag.book = books;
+                ViewBag.category = getAllCategory();
+                ViewBag.notice = null;
+            }
+            else
+            {
+                ViewBag.book = null;
+                ViewBag.category = getAllCategory();
+                ViewBag.notice = "EMPTY";
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SearchByName(string name)
+        {
+            List<Book> books = new List<Book>();
+            foreach (var book in _db.Books)
+            {
+                if (book.Title == name)
+                {
+                    books.Add(book);
+                }
+            }
+            if (books.Count != 0)
+            {
+                ViewBag.book = books;
+                ViewBag.category = getAllCategory();
+            }
+            else
+            {
+                ViewBag.book = null;
+                ViewBag.category = getAllCategory();
+            }
             return View();
         }
         public IActionResult BookDetail(int id)
@@ -253,7 +304,10 @@ namespace ASMNhom3.Controllers
         {
             return _db.Carts.Find(id);
         }
-
+        private Category getCate(int id)
+        {
+            return _db.Categorys.Find(id);
+        }
         public IActionResult Privacy()
         {
             return View();
