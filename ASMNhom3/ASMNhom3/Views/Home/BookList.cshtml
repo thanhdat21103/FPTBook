@@ -11,13 +11,18 @@
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian">
 							<!--category-productsr-->
-							{{#each theloai }}
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="/product/{{theloai}}">{{theloai}}</a></h4>
-								</div>
-							</div>
-							{{/each}}
+							@foreach (var cate in ViewBag.category)
+							{
+								if (cate.IsConfirm = true)
+								{
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title"><a asp-action="SearchByCate" asp-controller="Home" asp-route-id="@cate.CategoryId">@cate.Name</a></h4>
+										</div>
+									</div>
+								}
+
+							}
 						</div><!--/category-productsr-->
 					</div>
 				</div>
@@ -26,30 +31,30 @@
 					<div class="features_items">
 						<!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
-						<p class="title text-center">{{thongbao}}</p>
-						@foreach (var item in ViewBag.book)
-						{
-							<div class="col-sm-4">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="@item.Image" alt="" />
-											<h2>@item.Title</h2>
-											<p>@item.Price</p>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
+							@foreach (var item in ViewBag.book)
+							{
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="@item.Image" alt="" />
 												<h2>@item.Title</h2>
 												<p>@item.Price</p>
-												<a asp-action="BookDetail" asp-route-id="@item.BookID" asp-controller="Home" class="btn btn-default add-to-cart">
-													<i class="fa fa-shopping-cart"></i>View details
-												</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+													<h2>@item.Title</h2>
+													<p>@item.Price</p>
+													<a asp-action="BookDetail" asp-route-id="@item.BookID" asp-controller="Home" class="btn btn-default add-to-cart">
+														<i class="fa fa-shopping-cart"></i>View details
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						}
+							}
+					
 					</div><!--features_items-->
 				</div>
 			</div>
