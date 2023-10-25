@@ -233,7 +233,6 @@ namespace ASMNhom3.Controllers
             ViewBag.book = _product;
             return View();
         }
-        [HttpPost]
         public IActionResult SearchByCate(int id)
         {          
             List<Book> books = new List<Book>();

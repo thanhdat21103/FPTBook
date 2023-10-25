@@ -23,16 +23,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdENhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ListOwner.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdE93bmVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ListUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdFVzZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ResetPassOwner.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVzZXRQYXNzT3duZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/study/webc/FPTBook/ASMNhom3/ASMNhom3/Views/Admin/ResetPassUser.cshtml]
