@@ -54,7 +54,7 @@ namespace ASMNhom3.Controllers
             if (HttpContext.Session.GetString("Role") == "Owner")
             {
                 if (ModelState.IsValid)
-                {
+                {   
                     _db.Books.Add(model);
                     _db.SaveChanges();
 
