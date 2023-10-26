@@ -39,20 +39,7 @@ namespace ASMNhom3.Controllers
             }
 
         }
-        public IActionResult ListOwner()
-        {
-            if (HttpContext.Session.GetString("Role") == "Admin")
-            {
 
-                ViewBag.user = getAllOwner();
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
-        }
         public IActionResult ListCate()
         {
             if (HttpContext.Session.GetString("Role") == "Admin")
@@ -109,18 +96,7 @@ namespace ASMNhom3.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
-        public IActionResult ResetPassOwner(int id)
-        {
-            if (HttpContext.Session.GetString("Role") == "Admin")
-            {
-                ViewBag.user = getDetailUser(id);
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
-        }
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassUser(Account model)
@@ -140,25 +116,7 @@ namespace ASMNhom3.Controllers
                 return RedirectToAction("Login", "Login");
             }
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult ResetPassOwner(Account model)
-        {
-            if (HttpContext.Session.GetString("Role") == "Admin")
-            {
-                if (ModelState.IsValid)
-                {
-                    _db.Accounts.Update(model);
-                    _db.SaveChanges();
-                    return RedirectToAction("ListOwner");
-                }
-                return View(model);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
-        }
+    
         //hamphu
         private List<Account> getAllUser()
         {
