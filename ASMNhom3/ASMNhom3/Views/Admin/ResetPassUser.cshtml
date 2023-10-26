@@ -12,16 +12,13 @@
 			<!-- Small boxes (Stat box) -->
 
 			<div class="form-group">
-				<label asp-for="FirstName">Image</label>
-				<input asp-for="FirstName" class="form-control" value="@ViewBag.user.FirstName" disabled>
+				<label asp-for="FirstName">FirstName: @ViewBag.user.FirstName</label>
 			</div>
 			<div class="form-group">
-				<label asp-for="LastName">Title</label>
-				<input asp-for="LastName" class="form-control" value="@ViewBag.user.LastName" disabled>
+				<label asp-for="LastName">LastName: @ViewBag.user.LastName</label>
 			</div>
 			<div class="form-group">
-				<label asp-for="Password">Password</label>
-				<input asp-for="Password" class="form-control" value="@ViewBag.user.Password" disabled type="text">
+				<label asp-for="Password">Password: @ViewBag.user.Password</label>
 			</div>
 			<form asp-action="ResetPassUser" asp-controller="Admin" method="post">
 				<h1>Reset password</h1>
@@ -35,16 +32,50 @@
 					<input asp-for="Roles" class="form-control" value="@ViewBag.user.Roles" type="hidden">
 					<div class="form-group">
 						<label asp-for="Password">Password</label>
-						<input asp-for="Password" class="form-control" value="@ViewBag.user.Password">
+						<input asp-for="Password" class="form-control" id="Password">
+
 					</div>
 					<div class="form-group">
 						<label asp-for="ConfirmPassword">ConfirmPassword</label>
-						<input asp-for="ConfirmPassword" class="form-control" value="@ViewBag.user.ConfirmPassword">
+						<input asp-for="ConfirmPassword" class="form-control" id="ConfirmPassword" type="password">
+						<span id="confirmPasswordError" class="text-danger"></span>
 					</div>
-					<button type="submit" class="btn btn-primary">Update</button>
+					<button type="submit" class="btn btn-primary" id="updateButton" disabled> Update</button>
+				</div>
 			</form>
 		</div>
 	</section>
 </div>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var password = document.getElementById("Password");
+		var confirmPassword = document.getElementById("ConfirmPassword");
+		var confirmPasswordError = document.getElementById("confirmPasswordError");
+		var updateButton = document.getElementById("updateButton");
+
+		password.addEventListener("input", validatePassword);
+		confirmPassword.addEventListener("input", validatePassword);
+
+		updateButton.addEventListener("click", function (event) {
+			if (password.value != confirmPassword.value) {
+				confirmPassword.setCustomValidity("Mật khẩu và xác nhận mật khẩu không khớp.");
+				confirmPasswordError.innerText = "Mật khẩu và xác nhận mật khẩu không khớp.";
+				event.preventDefault(); // Ngăn chặn việc submit form
+			}
+		});
+
+		function validatePassword() {
+			if (password.value != confirmPassword.value) {
+				confirmPassword.setCustomValidity("Mật khẩu và xác nhận mật khẩu không khớp.");
+				confirmPasswordError.innerText = "Mật khẩu và xác nhận mật khẩu không khớp.";
+				updateButton.disabled = true; // Disable nút "Update" nếu mật khẩu không khớp
+			} else {
+				confirmPassword.setCustomValidity("");
+				confirmPasswordError.innerText = "";
+				updateButton.disabled = false; // Kích hoạt nút "Update" nếu mật khẩu khớp
+			}
+		}
+	});
+</script>
 
 
