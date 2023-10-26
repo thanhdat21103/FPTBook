@@ -18,10 +18,39 @@ namespace ASMNhom3.Controllers
         {
             if (HttpContext.Session.GetString("Email") != null)
             {
+                ViewBag.UserEmail = HttpContext.Session.GetString("Email");
                 ViewBag.user = _db.Accounts.FirstOrDefault(c => c.Email == HttpContext.Session.GetString("Email"));
                 ViewBag.history = _db.Histories.Where(c => c.Email == HttpContext.Session.GetString("Email"));
                 ViewBag.checkout = _db.QueueCheckOuts.Where(c => c.Email == HttpContext.Session.GetString("Email"));
                 return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpPost]
+        public IActionResult updateProfile(Account model)
+        {
+            if (HttpContext.Session.GetString("Email") != null)
+            {
+                _db.Accounts.Update(model);
+                _db.SaveChanges();
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+        }
+        [HttpPost]
+        public IActionResult updatePassword(Account model)
+        {
+            if (HttpContext.Session.GetString("Email") != null)
+            {
+                _db.Accounts.Update(model);
+                _db.SaveChanges();
+                return RedirectToAction("Profile");
             }
             else
             {
@@ -279,7 +308,7 @@ namespace ASMNhom3.Controllers
                 ViewBag.category = getAllCategory();
             }
             return View();
-        }
+        }   
         public IActionResult BookDetail(int id)
         {
             ViewBag.UserEmail = HttpContext.Session.GetString("Email");
