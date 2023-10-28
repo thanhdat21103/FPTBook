@@ -39,7 +39,6 @@ namespace ASMNhom3.Controllers
                     if (user.Roles == "User")
                     {
                         HttpContext.Session.SetString("Email", account.Email);
-                        HttpContext.Session.SetString("UserID", account.AccountID.ToString());
                         return RedirectToAction("Index", "Home");
                     }
                     else if (user.Roles == "Owner")
@@ -101,7 +100,6 @@ namespace ASMNhom3.Controllers
 
             else
             {
-                ViewBag.error = "Loi vl";
                 return View();
             }
         }
